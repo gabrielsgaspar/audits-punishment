@@ -24,6 +24,26 @@
 - Reports may vary in layout across years.
 - Parsing strategy must preserve page anchors for evidence spans.
 
+## Source 2B: CGU Open Data Auditorias CSV (primary audit index)
+- Data page: https://www.gov.br/cgu/pt-br/acesso-a-informacao/dados-abertos/arquivos/auditorias
+- Direct download: https://dadosabertos-download.cgu.gov.br/Auditorias/Auditorias.csv
+- Reports UI reference: https://eaud.cgu.gov.br/relatorios
+- Update cadence (per source page): monthly refreshes.
+- Expected key fields from CSV:
+- `Id da Tarefa`
+- `Id da Auditoria`
+- `Titulo do Relatorio` / `Título do Relatório`
+- `Data de Publicação`
+- `UF`
+- `Município`
+- `Edição Programa Sorteio / FEF`
+- Role in this project:
+- Primary official index for published CGU audit tasks.
+- Base table for municipality-level linking before PDF retrieval.
+- Data quality note:
+- Encodings can vary (UTF-8 BOM vs Latin-1).
+- Municipality names are normalized and matched to IBGE codes.
+
 ## Source 3: CNJ DataJud API
 - Public page: https://www.cnj.jus.br/sistemas/datajud/api-publica/
 - Purpose: structured judicial process metadata and movements.
@@ -66,3 +86,8 @@
 - All listed sources are public or public API/document portals.
 - Public availability does not remove responsibilities for careful handling.
 - We avoid publishing unnecessary personally identifying fragments.
+
+## Reference-key note (IBGE)
+- We use the IBGE Localidades API as municipality reference for code/name/UF mapping.
+- In some API responses, nested geographic fields can be null.
+- Parser logic is defensive and only relies on municipality `id`, `nome`, and UF `sigla` when safely extractable.

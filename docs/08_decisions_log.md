@@ -58,3 +58,19 @@
 - Next steps:
 - Implement deterministic ingestors and manifests.
 - Add chunk quality checks and pilot validation set.
+
+## Entry 4
+- Date: 2026-03-06
+- Decision: Use IBGE municipality code as the universal municipality key and apply conservative rapidfuzz matching for unresolved text names.
+- Rationale:
+- IBGE code provides a stable key across ingestion, linking, and econometrics layers.
+- Text names vary in accents and punctuation; deterministic + conservative fuzzy matching reduces false positives.
+- Alternatives considered:
+- Keep municipality names as primary keys only.
+- Use only exact string matching and drop all unresolved rows.
+- Risks:
+- Fuzzy matches can still introduce errors if thresholds are too permissive.
+- Manual review load increases when data quality is low.
+- Next steps:
+- Track unresolved candidates in a review file.
+- Monitor coverage and unmatched-name frequency in each run report.

@@ -7,7 +7,7 @@ name = "audits-punishment"
 version = "0.1.0"
 description = "Data + LLM pipeline for linking Brazilian audit findings to legal punishment outcomes"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 authors = [
   { name = "Audits Punishment Team" }
 ]
@@ -22,7 +22,8 @@ dependencies = [
   "tqdm>=4.66.0",
   "tenacity>=8.2.0",
   "loguru>=0.7.2",
-  "pdfminer.six>=20231228"
+  "pdfminer.six>=20231228",
+  "rapidfuzz>=3.9.0"
 ]
 
 [project.optional-dependencies]

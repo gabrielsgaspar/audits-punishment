@@ -12,8 +12,8 @@ env/
 # Packaging
 *.egg-info/
 .dist/
-build/
-dist/
+/build/
+/dist/
 
 # Tool caches
 .pytest_cache/
